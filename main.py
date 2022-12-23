@@ -1,21 +1,23 @@
-# Возвращает результат математической операции "sign" с числами "a" и "b"
-# Входные данные - числа "a" и "b" и знак математической операции "sign"
+# Возвращает результат математической операции "text[1]" с числами "text[0]" и "text[2]"
+# Входные данные - числа "text[0]" и "text[2]" и знак математической операции "sign"
 # Граничные значения:
-#   a, b - числа
-#   sign - знак из множества "+, -, *, /"
+#   text[0], text[2] - числа
+#   text[1] - знак из множества "+, -, *, /"
 # Возвращает результат математической операции
-def calc(a : float, b: float, sign:str):
-    res = -1
-    if sign in ('+', '-', '*', '/'):
-        if sign == '+':
-            res = a+b
-        elif sign == '-':
-            res = a-b
-        elif sign == '*':
-            res = a*b
-        elif sign == '/':
-            res = a/b
-    return res
+def calc(text):
+    result = 0
+    if text[1] == '+':
+        result = int(text[0]) + int(text[2])
+    elif text[1] == '-':
+        result = int(text[0]) - int(text[2])
+    elif text[1] == '*':
+        result = int(text[0]) * int(text[2])
+    elif text[1] == '/':
+        result = int(text[0]) / int(text[2])
+    else:
+        print("error")
+    # print(result)
+    return result
 
 # Сортирует список "a" по возрастанию
 # Входные данные - натуральное число "n"
@@ -36,21 +38,25 @@ def bubblesort(a : list):
 #   a - натуральное число
 # Возвращает "n" чисел Фибоначчи
 def fib(n):
-    if n <= 0:
-        raise IndexError
-    output = []
-    a, b = 0, 1
-    output.append(a)
-    output.append(b)
-    for _ in range(n-2):
-        a, b = b, a + b
-        output.append(b)
-    return output
+    arr = []
+    arr.append(1)
+    arr.append(1)
+
+    fib1 = fib2 = 1
+
+    n = int(n) - 2
+
+    while n > 0:
+        fib1, fib2 = fib2, fib1 + fib2
+        n -= 1
+        arr.append(fib2)
+    # print(arr)
+    return arr
 
 def main():
     print(fib(10))
     print(bubblesort([1, 5, 3, 2, 4]))
-    print(calc(3, 5, '*'))
+    print(calc("5*3"))
 
 
 if __name__ == '__main__':
